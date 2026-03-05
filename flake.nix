@@ -27,16 +27,12 @@
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; };
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
         modules = [
-          ./mod/core
-          ./mod/nvim
-          ./mod/git
+          ./mods/core
+          ./mods/nvim
+          ./mods/git
         ];
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
       };
     };
 }
