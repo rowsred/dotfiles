@@ -85,7 +85,8 @@ vim.lsp.config("lua_ls", {
 	},
 })
 vim.lsp.enable("lua_ls")
-vim.lsp.enable("nixd")
+vim.lsp.enable("clangd")
+vim.lsp.enable("rust_analyzer")
 --::
 
 --::completion and snippets
