@@ -8,12 +8,19 @@ RED='\033[0;31m'
 NC='\033[0m'
 BOLD='\033[1m'
 
-# --- Konfigurasi ---
-DOTFILES_REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# --- Konfigurasi Path ---
+# Mendapatkan path absolut folder dotfiles (asumsi script ada di dalam repo)
+DOTFILES_REPO="$HOME/dotfiles"
 CONFIG_SRC="$HOME/.config"
 CONFIG_DEST="$DOTFILES_REPO/config"
 
-# Daftar file HOME (Asli:Tujuan)
+# --- DEKLARASI DATA (Edit di sini jika ingin menambah config) ---
+# Format: "Nama_Folder_Asal:Nama_Folder_Tujuan_di_Repo"
+CONFIG_FILES=(
+    "nvim:nvim"
+)
+
+# Format: "Nama_File_Asal:Nama_File_Tujuan_di_Repo"
 HOME_FILES=(
     ".bashrc:bashrc"
     ".gitconfig:gitconfig"
@@ -21,114 +28,111 @@ HOME_FILES=(
 
 header() {
     echo -e "${BLUE}${BOLD}==========================================${NC}"
-    echo -e "${BLUE}${BOLD}   🚀 DOTFILES MANAGER (Default: Restore) ${NC}"
+    echo -e "${BLUE}${BOLD}    🚀 DOTFILES MANAGER (Default: Restore)${NC}"
     echo -e "${BLUE}${BOLD}==========================================${NC}"
-}
-
-# --- FUNGSI BACKUP (DENGAN PILIHAN) ---
-backup() {
-    header
-    echo -e "${YELLOW}[BACKUP MODE]${NC}"
-
-    echo -e "\nPilih apa yang ingin di-backup:"
-    echo -e "1) Semua (.config & Home files)"
-    echo -e "2) Hanya folder tertentu di .config"
-    echo -e "3) Hanya file Home tertentu"
-    read -p "Masukkan pilihan (1/2/3): " choice
-
-    case $choice in
-        1)
-            # Backup Semua
-            mkdir -p "$CONFIG_DEST"
-            for dir in "$CONFIG_SRC"/*/; do
-                folder=$(basename "$dir")
-                rsync -az --delete "$dir" "$CONFIG_DEST/$folder"
-                printf "  %-30s ${GREEN}✔️ Synced${NC}\n" "$folder"
-            done
-            for entry in "${HOME_FILES[@]}"; do
-                src="${entry%%:*}"; dest="${entry#*:}"
-                [ -f "$HOME/$src" ] && rsync -az "$HOME/$src" "$DOTFILES_REPO/$dest" && printf "  %-30s ${GREEN}✔️ %-20s${NC}\n" "$src" "$dest"
-            done
-            ;;
-        2)
-            # Pilih Folder di .config
-            echo -e "\nFolder tersedia di $CONFIG_SRC:"
-            ls -F "$CONFIG_SRC" | grep '/'
-            read -p "Masukkan nama folder (pisahkan dengan spasi): " selected_folders
-            for folder in $selected_folders; do
-                folder=${folder%/} # hapus trailing slash jika ada
-                if [ -d "$CONFIG_SRC/$folder" ]; then
-                    mkdir -p "$CONFIG_DEST/$folder"
-                    rsync -az --delete "$CONFIG_SRC/$folder/" "$CONFIG_DEST/$folder/"
-                    echo -e "  ${GREEN}✔️ $folder berhasil di-backup${NC}"
-                else
-                    echo -e "  ${RED}❌ $folder tidak ditemukan${NC}"
-                fi
-            done
-            ;;
-        3)
-            # Pilih File Home
-            echo -e "\nFile Home yang terdaftar:"
-            for i in "${!HOME_FILES[@]}"; do echo "$i) ${HOME_FILES[$i]%%:*}"; done
-            read -p "Masukkan nomor file (pisahkan dengan spasi): " selected_indices
-            for idx in $selected_indices; do
-                entry="${HOME_FILES[$idx]}"
-                src="${entry%%:*}"; dest="${entry#*:}"
-                if [ -f "$HOME/$src" ]; then
-                    rsync -az "$HOME/$src" "$DOTFILES_REPO/$dest"
-                    echo -e "  ${GREEN}✔️ $src di-backup sebagai $dest${NC}"
-                fi
-            done
-            ;;
-        *) echo "Pilihan tidak valid.";;
-    esac
 }
 
 # --- FUNGSI RESTORE (DEFAULT) ---
 restore() {
     header
-    echo -e "${GREEN}[RESTORE MODE]${NC}"
-
-    # 1. Restore .config
-    if [ -d "$CONFIG_DEST" ]; then
-        echo -e "\n${BOLD}1. Memulihkan Folder .config${NC}"
-        echo "----------------------------------------------------"
-        for dir in "$CONFIG_DEST"/*/; do
-            [ ! -d "$dir" ] && continue # Lewati jika bukan direktori
-            
-            folder_name=$(basename "$dir")
-            target_dir="$CONFIG_SRC/$folder_name"
-
-            # KRUSIAL: Buat folder tujuan jika belum ada
-            mkdir -p "$target_dir"
-
-            # Copy isi folder (tanda / di akhir sangat penting)
-            rsync -az "$dir/" "$target_dir/"
-            printf "  %-30s ${GREEN}✔️ Restored${NC}\n" "$folder_name"
-        done
-    fi
-
-    # 2. Restore Home Files
-    echo -e "\n${BOLD}2. Memulihkan file Home (Restore dots)${NC}"
+    echo -e "${GREEN}[MODE: RESTORE (Repo -> Local)]${NC}"
+    
+    # 1. Restore .config Folders
+    echo -e "\n${BOLD}1. Memulihkan Folder .config${NC}"
     echo "----------------------------------------------------"
-    for entry in "${HOME_FILES[@]}"; do
-        src="${entry%%:*}"
-        dest="${entry#*:}"
-        if [ -f "$DOTFILES_REPO/$dest" ]; then
-            # Pastikan folder parent file (jika ada) sudah ada
-            mkdir -p "$(dirname "$HOME/$src")"
-            rsync -az "$DOTFILES_REPO/$dest" "$HOME/$src"
-            printf "  %-30s ${GREEN}✔️ %-20s${NC}\n" "$dest" "$src"
+    for entry in "${CONFIG_FILES[@]}"; do
+        src="${entry%%:*}"; dest="${entry#*:}"
+        if [ -d "$CONFIG_DEST/$dest" ]; then
+            mkdir -p "$CONFIG_SRC/$src"
+            # rsync isi folder repo ke lokal
+            rsync -az --delete "$CONFIG_DEST/$dest/" "$CONFIG_SRC/$src/"
+            printf "  %-30s ${GREEN}✔️ Restored${NC}\n" "$src"
         else
-            printf "  %-30s ${RED}❌ Missing${NC}\n" "$dest"
+            printf "  %-30s ${RED}❌ Missing in Repo${NC}\n" "$dest"
         fi
     done
+
+    # 2. Restore Home Files
+    echo -e "\n${BOLD}2. Memulihkan file Home${NC}"
+    echo "----------------------------------------------------"
+    for entry in "${HOME_FILES[@]}"; do
+        src="${entry%%:*}"; dest="${entry#*:}"
+        if [ -f "$DOTFILES_REPO/$dest" ]; then
+            mkdir -p "$(dirname "$HOME/$src")"
+            rsync -az "$DOTFILES_REPO/$dest" "$HOME/$src"
+            printf "  %-30s ${GREEN}✔️ Restored${NC}\n" "$src"
+        else
+            printf "  %-30s ${RED}❌ Missing in Repo${NC}\n" "$dest"
+        fi
+    done
+    echo -e "\n${GREEN}Selesai! Konfigurasi telah diperbarui.${NC}"
+}
+
+# --- FUNGSI BACKUP (TAMBAHAN) ---
+backup() {
+    header
+    echo -e "${YELLOW}[MODE: BACKUP (Local -> Repo)]${NC}"
+    echo -e "Pilih lingkup backup:"
+    echo -e "1) Backup SEMUA yang terdaftar"
+    echo -e "2) Pilih Folder .config tertentu"
+    echo -e "3) Pilih File Home tertentu"
+    read -p "Masukkan pilihan (1/2/3): " choice
+
+    case $choice in
+        1)
+            # Backup .config
+            echo -e "\n${BLUE}Syncing .config folders...${NC}"
+            for entry in "${CONFIG_FILES[@]}"; do
+                src="${entry%%:*}"; dest="${entry#*:}"
+                if [ -d "$CONFIG_SRC/$src" ]; then
+                    mkdir -p "$CONFIG_DEST/$dest"
+                    rsync -az --delete "$CONFIG_SRC/$src/" "$CONFIG_DEST/$dest/"
+                    printf "  %-30s ${GREEN}✔️ Synced${NC}\n" "$src"
+                fi
+            done
+            # Backup Home
+            echo -e "\n${BLUE}Syncing Home files...${NC}"
+            for entry in "${HOME_FILES[@]}"; do
+                src="${entry%%:*}"; dest="${entry#*:}"
+                [ -f "$HOME/$src" ] && rsync -az "$HOME/$src" "$DOTFILES_REPO/$dest" && printf "  %-30s ${GREEN}✔️ Synced${NC}\n" "$src"
+            done
+            ;;
+        2)
+            echo -e "\nDaftar .config yang tersedia:"
+            for i in "${!CONFIG_FILES[@]}"; do echo "$i) ${CONFIG_FILES[$i]%%:*}"; done
+            read -p "Masukkan nomor (pisahkan spasi): " indices
+            for idx in $indices; do
+                entry="${CONFIG_FILES[$idx]}"
+                src="${entry%%:*}"; dest="${entry#*:}"
+                if [ -d "$CONFIG_SRC/$src" ]; then
+                    mkdir -p "$CONFIG_DEST/$dest"
+                    rsync -az --delete "$CONFIG_SRC/$src/" "$CONFIG_DEST/$dest/"
+                    echo -e "  ${GREEN}✔️ $src synced${NC}"
+                fi
+            done
+            ;;
+        3)
+            echo -e "\nDaftar file Home yang tersedia:"
+            for i in "${!HOME_FILES[@]}"; do echo "$i) ${HOME_FILES[$i]%%:*}"; done
+            read -p "Masukkan nomor (pisahkan spasi): " indices
+            for idx in $indices; do
+                entry="${HOME_FILES[$idx]}"
+                src="${entry%%:*}"; dest="${entry#*:}"
+                if [ -f "$HOME/$src" ]; then
+                    rsync -az "$HOME/$src" "$DOTFILES_REPO/$dest"
+                    echo -e "  ${GREEN}✔️ $src synced${NC}"
+                fi
+            done
+            ;;
+        *) echo "Batal.";;
+    esac
 }
 
 # --- LOGIKA EKSEKUSI ---
+# Jika argumen pertama adalah "backup", jalankan fungsi backup.
+# Jika tidak ada argumen atau argumen apapun selain backup, jalankan restore.
 if [ "$1" == "backup" ]; then
     backup
 else
-    # Jika tidak ada argumen atau argumennya 'restore'
     restore
 fi
