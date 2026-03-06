@@ -18,7 +18,6 @@ opt.mouse = "a"
 opt.undofile = true
 opt.swapfile = false
 --::
-
 --::no auto comment on new line
 vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("no_auto_comment", {}),
@@ -251,3 +250,4 @@ end
 
 -- Keymap tetap sama
 vim.keymap.set({ "n", "t" }, "<leader>t", "<CMD>lua toggle_bottom_terminal()<CR>", { noremap = true, silent = true })
+--:

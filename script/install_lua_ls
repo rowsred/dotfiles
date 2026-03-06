@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# --- Konfigurasi ---
+INSTALL_DIR="$HOME/.local/share/lua-language-server"
+BIN_DIR="$HOME/.local/bin"
+TMP_DIR="/tmp/lua-ls-install"
+
+# Warna UI
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo -e "${BLUE}🚀 Memulai instalasi Lua Language Server...${NC}"
+
+# 1. Persiapan Folder
+mkdir -p "$BIN_DIR"
+mkdir -p "$INSTALL_DIR"
+mkdir -p "$TMP_DIR"
+
+# 2. Cari Versi Terbaru dari GitHub
+echo -e "${BLUE}🔍 Mencari versi terbaru...${NC}"
+LATEST_URL=$(curl -s https://api.github.com/repos/LuaLS/lua-language-server/releases/latest | grep "browser_download_url.*-linux-x64.tar.gz" | cut -d '"' -f 4)
+
+if [ -z "$LATEST_URL" ]; then
+    echo -e "${RED}❌ Gagal mendapatkan URL download. Periksa koneksi internet.${NC}"
+    exit 1
+fi
+
+# 3. Download
+echo -e "${BLUE}📥 Mengunduh: ${YELLOW}$(basename "$LATEST_URL")${NC}"
+curl -L "$LATEST_URL" -o "$TMP_DIR/lua-ls.tar.gz"
+
+# 4. Ekstrak
+echo -e "${BLUE}📦 Mengekstrak ke $INSTALL_DIR...${NC}"
+tar -xzf "$TMP_DIR/lua-ls.tar.gz" -C "$INSTALL_DIR"
+
+# 5. Buat Wrapper Script di .local/bin
+# lua-ls membutuhkan path executable yang tepat ke file 'main.lua'-nya
+echo -e "${BLUE}🔗 Membuat executable di $BIN_DIR/lua-language-server...${NC}"
+
+cat <<EOF > "$BIN_DIR/lua-language-server"
+#!/bin/bash
+exec "$INSTALL_DIR/bin/lua-language-server" "\$@"
+EOF
+
+chmod +x "$BIN_DIR/lua-language-server"
+
+# 6. Bersihkan file sementara
+rm -rf "$TMP_DIR"
+
+echo -e "${GREEN}✅ Lua Language Server berhasil terinstal!${NC}"
+echo -e "Lokasi: ${YELLOW}$BIN_DIR/lua-language-server${NC}"
+echo -ne "Versi: "
+"$BIN_DIR/lua-language-server" --version
