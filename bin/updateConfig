@@ -20,7 +20,7 @@ CONFIG_DEST="$DOTFILES_REPO/config"
 # --- Data Declaration ---
 # Format: "Asal:Tujuan:Mode" (merge/replace)
 CONFIG_LIST=(
-    "nvim:nvim:replace"
+    "nvim:nvim:merge"
 #    "i3:i3:merge"
 #    "kitty:kitty:merge"
 #    "polybar:polybar:replace"
