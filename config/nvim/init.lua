@@ -76,7 +76,6 @@ require("mason-tool-installer").setup({
 	ensure_installed = {
 		"lua-language-server",
 		"rust-analyzer",
-		"clangd",
 	},
 	integrations = {
 		["mason-lspconfig"] = true,
@@ -98,9 +97,22 @@ vim.lsp.config("lua_ls", {
 		},
 	},
 })
-
+vim.lsp.config("rust_analyzer", {
+	vim.lsp.config("rust_analyzer", {
+		root_dir = vim.fs.root(0, { "Cargo.toml", "rust-project.json", ".git" }),
+		settings = {
+			["rust-analyzer"] = {
+				inlayHints = {
+					chainingHints = { enable = true },
+					closingBraceHints = { enable = true, minLines = 25 },
+					parameterHints = { enable = true },
+					typeHints = { enable = true },
+				},
+			},
+		},
+	}),
+})
 vim.lsp.enable("lua_ls")
-vim.lsp.enable("clangd")
 vim.lsp.enable("rust_analyzer")
 --::
 
