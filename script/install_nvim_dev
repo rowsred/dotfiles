@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# --- Konfigurasi ---
+INSTALL_DIR="$HOME/.local"
+BIN_DIR="$INSTALL_DIR/bin"
+NVIM_TMP="/tmp/nvim-nightly"
+# URL untuk Linux x86_64 AppImage (Paling stabil untuk WSL/Linux)
+NVIM_URL="https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz"
+
+# Warna UI
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+echo -e "${BLUE}🚀 Memulai instalasi Neovim Nightly...${NC}"
+
+# 1. Pastikan direktori tujuan ada
+mkdir -p "$BIN_DIR"
+mkdir -p "$NVIM_TMP"
+
+# 2. Unduh rilis terbaru
+echo -e "${BLUE}📥 Mengunduh paket terbaru...${NC}"
+curl -L "$NVIM_URL" -o "$NVIM_TMP/nvim.tar.gz"
+
+# 3. Ekstrak paket
+echo -e "${BLUE}📦 Mengekstrak file...${NC}"
+tar xzf "$NVIM_TMP/nvim.tar.gz" -C "$NVIM_TMP" --strip-components=1
+
+# 4. Pindahkan ke .local
+# Kita hapus versi lama jika ada untuk mencegah konflik
+rm -rf "$INSTALL_DIR/nvim-nightly-app" 
+mv "$NVIM_TMP" "$INSTALL_DIR/nvim-nightly-app"
+
+# 5. Buat Symbolic Link ke .local/bin
+echo -e "${BLUE}🔗 Membuat link ke $BIN_DIR/nvim...${NC}"
+ln -sf "$INSTALL_DIR/nvim-nightly-app/bin/nvim" "$BIN_DIR/nvim"
+
+# 6. Verifikasi PATH
+if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
+    echo -e "${YELLOW}⚠️  Peringatan: $BIN_DIR belum ada di PATH kamu.${NC}"
+    echo -e "Tambahkan baris ini ke .bashrc atau .zshrc:"
+    echo -e "${GREEN}export PATH=\"\$HOME/.local/bin:\$PATH\"${NC}"
+fi
+
+echo -e "${GREEN}✅ Neovim Nightly berhasil terinstal!${NC}"
+echo -ne "Versi saat ini: "
+"$BIN_DIR/nvim" --version | head -n 1
