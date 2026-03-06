@@ -196,3 +196,58 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 --::
+
+--::
+local term_buf = nil
+local term_win = nil
+
+function _G.toggle_bottom_terminal()
+	-- 1. Jika window sedang terbuka, tutup saja (sembunyikan)
+	if term_win and vim.api.nvim_win_is_valid(term_win) then
+		vim.api.nvim_win_hide(term_win)
+		term_win = nil
+		return
+	end
+
+	-- 2. Buat atau ambil buffer terminal yang sudah ada
+	if term_buf == nil or not vim.api.nvim_buf_is_valid(term_buf) then
+		term_buf = vim.api.nvim_create_buf(false, true)
+	end
+
+	-- 3. Kalkulasi Dimensi (Posisi Bawah)
+	local stats = vim.api.nvim_list_uis()[1]
+	local padding = 1 -- Jarak dari pinggir layar agar terlihat melayang
+	local width = stats.width - (padding * 4) -- Hampir selebar layar
+	local height = 12 -- Tinggi terminal (bisa disesuaikan)
+
+	-- Menempatkan di baris paling bawah minus tinggi dan padding
+	local row = stats.height - height - 3
+	local col = padding * 2
+
+	local opts = {
+		relative = "editor",
+		width = width,
+		height = height,
+		col = col,
+		row = row,
+		style = "minimal",
+		border = "rounded", -- Border melengkung ala Telescope
+		title = "  Terminal ",
+		title_pos = "left",
+	}
+
+	-- 4. Buka window
+	term_win = vim.api.nvim_open_win(term_buf, true, opts)
+
+	-- 5. Jalankan shell jika buffer masih baru
+	if vim.bo[term_buf].buftype ~= "terminal" then
+		vim.cmd("terminal")
+		vim.bo[term_buf].buflisted = false
+	end
+
+	-- 6. Masuk mode insert otomatis
+	vim.cmd("startinsert")
+end
+
+-- Keymap tetap sama
+vim.keymap.set({ "n", "t" }, "<leader>t", "<CMD>lua toggle_bottom_terminal()<CR>", { noremap = true, silent = true })
