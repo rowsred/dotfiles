@@ -273,3 +273,42 @@ require("conform").setup({
 })
 --:lsp
 vim.lsp.enable("lua_ls")
+vim.lsp.enable("rust_analyzer")
+--: diagnostic custom
+local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
+
+-- 3. Konfigurasi Diagnostic (Cara Modern)
+vim.diagnostic.config({
+	virtual_text = false, -- Matikan teks di samping agar tidak berantakan
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = signs.Error,
+			[vim.diagnostic.severity.WARN] = signs.Warn,
+			[vim.diagnostic.severity.HINT] = signs.Hint,
+			[vim.diagnostic.severity.INFO] = signs.Info,
+		},
+	},
+	update_in_insert = false,
+	underline = true,
+	severity_sort = true,
+	float = {
+		focused = false,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+	},
+})
+vim.api.nvim_create_autocmd("CursorHold", {
+	callback = function()
+		vim.diagnostic.open_float(nil, {
+			focusable = false,
+			close_events = { "BufLeave", "CursorMoved", "InsertEnter" },
+			border = "rounded", -- Kotak rounded agar estetik
+			source = "always", -- Menampilkan sumber error (misal: rust-analyzer)
+			prefix = " ",
+		})
+	end,
+})
+vim.opt.updatetime = 100
