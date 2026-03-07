@@ -237,3 +237,41 @@ require("conform").setup({
 })
 --:lsp
 vim.lsp.enable("lua_ls")
+
+--: tab
+-- Selalu tampilkan tabline
+vim.opt.showtabline = 2
+function _G.SimpleTabLine()
+	local s = ""
+	local bufs = vim.api.nvim_list_bufs()
+	local current = vim.api.nvim_get_current_buf()
+	local index = 1
+
+	for _, bufnr in ipairs(bufs) do
+		if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_get_option(bufnr, "buflisted") then
+			local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+			if name == "" then
+				name = "[No Name]"
+			end
+
+			if bufnr == current then
+				-- Pakai background abu-abu untuk yang aktif
+				s = s .. "%#ActiveTab# " .. index .. ":" .. name .. " "
+			else
+				-- Teks biasa untuk yang tidak aktif
+				s = s .. "%#InactiveTab# " .. index .. ":" .. name .. " "
+			end
+			index = index + 1
+		end
+	end
+	return s .. "%#TabLineFill#"
+end
+
+vim.opt.tabline = "%!v:lua.SimpleTabLine()"
+
+-- Warna: Background Abu-abu untuk tab aktif
+vim.cmd([[
+  highlight ActiveTab guifg=#ffffff guibg=#444444 gui=bold
+  highlight InactiveTab guifg=#888888 guibg=NONE
+  highlight TabLineFill guibg=NONE
+]])
