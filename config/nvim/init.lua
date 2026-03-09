@@ -30,46 +30,6 @@ keymap("n", "<S-Tab>", ":bprevious<CR>")
 keymap("n", "<leader>h", ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>")
 
 --::
---::floating terminal
-local term_buf = nil
-local term_win = nil
-function _G.toggle_bottom_terminal()
-	if term_win and vim.api.nvim_win_is_valid(term_win) then
-		vim.api.nvim_win_hide(term_win)
-		term_win = nil
-		return
-	end
-	if term_buf == nil or not vim.api.nvim_buf_is_valid(term_buf) then
-		term_buf = vim.api.nvim_create_buf(false, true)
-	end
-	local stats = vim.api.nvim_list_uis()[1]
-	local padding = 1
-	local width = stats.width - (padding * 4) -- Hampir selebar layar
-	local height = 12
-	local row = stats.height - height - 3
-	local col = padding * 2
-	local opts = {
-		relative = "editor",
-		width = width,
-		height = height,
-		col = col,
-		row = row,
-		style = "minimal",
-		border = "rounded",
-		title = "  Terminal ",
-		title_pos = "left",
-	}
-	term_win = vim.api.nvim_open_win(term_buf, true, opts)
-	if vim.bo[term_buf].buftype ~= "terminal" then
-		vim.cmd("terminal")
-		vim.bo[term_buf].buflisted = false
-	end
-	vim.cmd("startinsert")
-end
-
-vim.keymap.set({ "n", "t" }, "<leader>t", "<CMD>lua toggle_bottom_terminal()<CR>", { noremap = true, silent = true })
---:
-
 --::disable auto comment on new line
 vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("no_auto_comment", {}),
