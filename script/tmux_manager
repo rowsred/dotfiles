@@ -1,40 +1,50 @@
 #!/bin/bash
 
-# Fungsi untuk mendapatkan daftar gabungan Sesi dan Folder
-get_list() {
-    (
-        # Ambil semua sesi, tandai yang aktif dengan [S*] dan lainnya [S ]
-        tmux list-sessions -F '#{?session_attached,[S*],[S ]} #{session_name}' 2>/dev/null
-        # Ambil folder di direktori saat ini, tandai dengan [F ]
-        ls -d */ 2>/dev/null | cut -f1 -d'/' | sed 's/^/[F ] /'
-    ) | awk '{
-        # Berikan bobot: [S*] paling atas (0), [S ] (1), [F ] (2)
-        if ($1 == "[S*]") print "0 " $0;
-        else if ($1 == "[S ]") print "1 " $0;
-        else print "2 " $0;
-    }' | sort -s -k1,1 | cut -d' ' -f2-
-}
+# 1. Ambil path dari pane aktif saat ini
+# Kita simpan di variabel agar bisa digunakan oleh ls
+CURRENT_DIR=$(tmux display-message -p "#{pane_current_path}")
 
-export -f get_list
+# Fungsi untuk list (Sesi + Folder)
+# Kita buat tanpa fungsi export agar lebih stabil di beberapa shell
+LIST_DATA=$( (
+    # List Sesi
+    tmux list-sessions -F '#{?session_attached,[S*],[S ]} #{session_name}' 2>/dev/null
+    # List Folder di CURRENT_DIR
+    ls -d "$CURRENT_DIR"/*/ 2>/dev/null | while read -r line; do
+        echo "[F ] $(basename "$line")"
+    done
+) | awk '{
+    if ($1 == "[S*]") print "0 " $0;
+    else if ($1 == "[S ]") print "1 " $0;
+    else print "2 " $0;
+}' | sort -s -k1,1 | cut -d' ' -f2- )
 
-# Jalankan fzf di dalam popup
-CHOICE=$(get_list | fzf --reverse \
-    --header 'ENTER: Switch/Create | CTRL-R: Rename | CTRL-X: Kill' \
-    --bind "j:down,k:up" \
-    --bind "ctrl-r:execute(name=\$(echo {} | cut -c6-) && read -p \"Rename \$name to: \" newname && tmux rename-session -t \"\$name\" \"\$newname\")+reload(get_list)" \
-    --bind "ctrl-x:execute(name=\$(echo {} | cut -c6-) && tmux kill-session -t \"\$name\")+reload(get_list)")
+# 2. Jalankan fzf dan simpan hasilnya ke CHOICE
+CHOICE=$(echo "$LIST_DATA" | fzf --reverse \
+    --header "Path: $CURRENT_DIR" \
+    --bind "j:down,k:up")
 
-# Jika user menekan ESC, keluar
+# Jika batal (ESC), keluar
 [[ -z "$CHOICE" ]] && exit
 
-# Ambil nama asli tanpa prefix [S*], [S ], atau [F ]
-SESSION_NAME=$(echo "$CHOICE" | cut -c6-)
+# 3. Ambil Label dan Nama
+# [S*], [S ], atau [F ] ada di 4 karakter pertama
+LABEL=$(echo "$CHOICE" | cut -c1-4)
+# Nama adalah sisanya mulai dari karakter ke-6
+NAME=$(echo "$CHOICE" | cut -c6-)
 
-# Cek apakah sesi sudah ada, jika belum buat baru di folder tersebut
-if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
-    # Buat sesi baru dengan path absolut
-    tmux new-session -d -s "$SESSION_NAME" -c "$(pwd)/$SESSION_NAME"
+# 4. Eksekusi Pindah Sesi
+if [[ "$LABEL" == "[F ]" ]]; then
+    # Jika folder, buat path lengkapnya
+    TARGET_PATH="$CURRENT_DIR/$NAME"
+    
+    # Buat sesi baru jika belum ada (Session Name = Nama Folder)
+    if ! tmux has-session -t "$NAME" 2>/dev/null; then
+        tmux new-session -d -s "$NAME" -c "$TARGET_PATH"
+    fi
+    # Pindah ke sesi tersebut
+    tmux switch-client -t "$NAME"
+else
+    # Jika sudah berupa sesi ([S*] atau [S ]), langsung pindah
+    tmux switch-client -t "$NAME"
 fi
-
-# Pindah ke sesi tersebut
-tmux switch-client -t "$SESSION_NAME"
