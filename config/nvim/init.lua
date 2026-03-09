@@ -237,6 +237,11 @@ require("conform").setup({
 --:lsp
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("rust_analyzer")
+vim.lsp.enable("bashls")
+vim.lsp.enable("cssls")
+vim.lsp.enable("css_varibles")
+vim.lsp.enable("cssmodules_ls")
+vim.lsp.enable("ts_ls")
 --: diagnostic custom
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
 
