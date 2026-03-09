@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Fungsi untuk mendapatkan daftar gabungan Sesi dan Folder
+get_list() {
+    (
+        # Ambil semua sesi, tandai yang aktif dengan [S*] dan lainnya [S ]
+        tmux list-sessions -F '#{?session_attached,[S*],[S ]} #{session_name}' 2>/dev/null
+        # Ambil folder di direktori saat ini, tandai dengan [F ]
+        ls -d */ 2>/dev/null | cut -f1 -d'/' | sed 's/^/[F ] /'
+    ) | awk '{
+        # Berikan bobot: [S*] paling atas (0), [S ] (1), [F ] (2)
+        if ($1 == "[S*]") print "0 " $0;
+        else if ($1 == "[S ]") print "1 " $0;
+        else print "2 " $0;
+    }' | sort -s -k1,1 | cut -d' ' -f2-
+}
+
+export -f get_list
+
+# Jalankan fzf di dalam popup
+CHOICE=$(get_list | fzf --reverse \
+    --header 'ENTER: Switch/Create | CTRL-R: Rename | CTRL-X: Kill' \
+    --bind "j:down,k:up" \
+    --bind "ctrl-r:execute(name=\$(echo {} | cut -c6-) && read -p \"Rename \$name to: \" newname && tmux rename-session -t \"\$name\" \"\$newname\")+reload(get_list)" \
+    --bind "ctrl-x:execute(name=\$(echo {} | cut -c6-) && tmux kill-session -t \"\$name\")+reload(get_list)")
+
+# Jika user menekan ESC, keluar
+[[ -z "$CHOICE" ]] && exit
+
+# Ambil nama asli tanpa prefix [S*], [S ], atau [F ]
+SESSION_NAME=$(echo "$CHOICE" | cut -c6-)
+
+# Cek apakah sesi sudah ada, jika belum buat baru di folder tersebut
+if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+    # Buat sesi baru dengan path absolut
+    tmux new-session -d -s "$SESSION_NAME" -c "$(pwd)/$SESSION_NAME"
+fi
+
+# Pindah ke sesi tersebut
+tmux switch-client -t "$SESSION_NAME"
