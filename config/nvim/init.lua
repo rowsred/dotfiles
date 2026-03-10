@@ -297,4 +297,28 @@ vim.pack.add({
 require("nvim-treesitter").setup({
 	install_dir = vim.fn.stdpath("data") .. "/site",
 })
-require("nvim-treesitter").install({ "rust", "c", "lua" })
+require("nvim-treesitter").install({
+	"rust",
+	"c",
+	"cpp",
+	"lua",
+	"go",
+	"kdl",
+	"ron",
+	"bash",
+	"fish",
+	"kitty",
+	"toml",
+	"yaml",
+	"json",
+	"jsonc",
+	"ini",
+	"python",
+	"javascript",
+	"typescript",
+	"css",
+	"markdown",
+	"markdown_inline",
+	"vimdoc",
+	"regex",
+})
