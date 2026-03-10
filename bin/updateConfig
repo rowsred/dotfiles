@@ -21,6 +21,9 @@ CONFIG_DEST="$DOTFILES_REPO/config"
 # Format: "Asal:Tujuan:Mode" (merge/replace)
 CONFIG_LIST=(
     "nvim:nvim:merge"
+    "kitty:kitty:merge"
+    "niri:niri:merge"
+    "gtk-3.0:gtk-3.0:merge"
 #    "i3:i3:merge"
 #    "kitty:kitty:merge"
 #    "polybar:polybar:replace"
