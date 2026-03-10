@@ -84,7 +84,6 @@ local char_pairs = {
 	["'"] = "'",
 	["`"] = "`",
 }
-
 -- 1. Logic: Auto Insert & Skip-Over
 for open, close in pairs(char_pairs) do
 	keymap("i", open, function()
@@ -235,6 +234,26 @@ require("conform").setup({
 	},
 })
 --:lsp
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			runtime = {
+				version = "LuaJIT", -- Neovim menggunakan LuaJIT
+			},
+			diagnostics = {
+				globals = { "vim" }, -- Menghilangkan error "undefined global vim"
+			},
+			workspace = {
+				-- Mengambil semua library Neovim & plugin secara otomatis
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
+			},
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+})
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("bashls")
@@ -321,4 +340,10 @@ require("nvim-treesitter").install({
 	"markdown_inline",
 	"vimdoc",
 	"regex",
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "<filetype>" },
+	callback = function()
+		vim.treesitter.start()
+	end,
 })
