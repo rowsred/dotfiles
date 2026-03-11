@@ -207,7 +207,7 @@ require("blink.cmp").setup({
 	-- Default list of enabled providers defined so that you can extend it
 	-- elsewhere in your config, without redefining it, due to `opts_extend`
 	sources = {
-		default = { "buffer", "path", "snippets", "lsp" },
+		default = { "snippets", "buffer", "path", "lsp" },
 		providers = {
 			buffer = {
 				score_offset = 100, -- Naikkan angka ini agar buffer lebih diprioritaskan
@@ -258,9 +258,11 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("bashls")
 vim.lsp.enable("cssls")
+vim.lsp.enable("html")
 vim.lsp.enable("css_varibles")
 vim.lsp.enable("cssmodules_ls")
 vim.lsp.enable("ts_ls")
+vim.lsp.enable("vtsls")
 --: diagnostic custom
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
 

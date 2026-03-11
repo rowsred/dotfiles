@@ -23,6 +23,7 @@ CONFIG_LIST=(
     "nvim:nvim:merge"
     "kitty:kitty:merge"
     "niri:niri:merge"
+    "VSCodium:VSCodium:merge"
     "gtk-3.0:gtk-3.0:merge"
 #    "i3:i3:merge"
 #    "kitty:kitty:merge"
