@@ -302,7 +302,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 		})
 	end,
 })
-vim.opt.updatetime = 100
+vim.opt.updatetime = 300
 --: telescope
 vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
@@ -316,9 +316,6 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help ta
 --: treesitter
 vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-})
-require("nvim-treesitter").setup({
-	install_dir = vim.fn.stdpath("data") .. "/site",
 })
 require("nvim-treesitter").install({
 	"rust",
@@ -334,7 +331,6 @@ require("nvim-treesitter").install({
 	"toml",
 	"yaml",
 	"json",
-	"jsonc",
 	"ini",
 	"python",
 	"javascript",
@@ -345,8 +341,7 @@ require("nvim-treesitter").install({
 	"vimdoc",
 	"regex",
 })
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "<filetype>" },
+vim.api.nvim_create_autocmd("BufWrite", {
 	callback = function()
 		vim.treesitter.start()
 	end,
