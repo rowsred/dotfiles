@@ -1,6 +1,5 @@
 #!/usr/local/bin/bash
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 CURRENT_DIR=$(tmux display-message -p "#{pane_current_path}")
 
 get_list() {
