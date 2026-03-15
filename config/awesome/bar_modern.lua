@@ -104,6 +104,7 @@ function modern_bar.setup(s, tasklist_buttons)
 			s.mytasklist,
 			wibox.widget.systray(),
 			mytextclock, -- Menggunakan jam yang sudah diperbesar font-nya
+			s.mylayoutbox,
 		},
 	})
 end
