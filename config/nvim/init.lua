@@ -257,7 +257,7 @@ vim.lsp.config("lua_ls", {
 	},
 })
 vim.lsp.enable("lua_ls")
-vim.lsp.enable("rust_analyzer")
+--vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("bashls")
 vim.lsp.enable("cssls")
 vim.lsp.enable("html")
@@ -354,3 +354,6 @@ vim.pack.add({
 	{ src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
 })
 require("ibl").setup()
+vim.pack.add({
+	{ src = "https://github.com/mrcjkb/rustaceanvim" },
+})
