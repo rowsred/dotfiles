@@ -357,3 +357,4 @@ require("ibl").setup()
 vim.pack.add({
 	{ src = "https://github.com/mrcjkb/rustaceanvim" },
 })
+vim.api.nvim_create_autocmd("FileType", { pattern = "rust", command = "lsp enable" })
