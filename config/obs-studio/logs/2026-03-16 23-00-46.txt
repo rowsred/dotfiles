@@ -1,0 +1,409 @@
+23:00:46.689: Using EGL/X11
+23:00:46.689: CPU Name: Intel(R) Core(TM) i3-3240 CPU @ 3.40GHz
+23:00:46.689: CPU Speed: 3392.246MHz
+23:00:46.690: Physical Cores: 2, Logical Cores: 2
+23:00:46.690: Physical Memory: 6876MB Total, 2111MB Free
+23:00:46.690: Kernel Version: Linux 6.19.6-arch1-1
+23:00:46.690: Distribution: "Arch Linux" Unknown
+23:00:46.690: Desktop Environment: 
+23:00:46.690: Session Type: x11
+23:00:46.690: Window System: X11.0, Vendor: The X.Org Foundation, Version: 1.21.1
+23:00:46.691: Current Date/Time: 2026-03-16, 11:00:46 PM
+23:00:46.691: Browser Hardware Acceleration: true
+23:00:46.691: Qt Version: 6.10.2 (runtime), 6.10.2 (compiled)
+23:00:46.691: Portable mode: false
+23:00:46.753: OBS 32.1.0 (linux)
+23:00:46.753: ---------------------------------
+23:00:46.754: ---------------------------------
+23:00:46.754: audio settings reset:
+23:00:46.754: 	samples per sec: 48000
+23:00:46.754: 	speakers:        2
+23:00:46.754: 	max buffering:   960 milliseconds
+23:00:46.754: 	buffering type:  dynamically increasing
+23:00:46.756: ---------------------------------
+23:00:46.756: Initializing OpenGL...
+23:00:46.841: Loading up OpenGL on adapter Intel Mesa Intel(R) HD Graphics 2500 (IVB GT1)
+23:00:46.841: OpenGL loaded successfully, version 4.2 (Core Profile) Mesa 26.0.2-arch1.1, shading language 4.20
+23:00:46.880: ---------------------------------
+23:00:46.880: video settings reset:
+23:00:46.880: 	base resolution:   1366x768
+23:00:46.880: 	output resolution: 1092x614
+23:00:46.880: 	downscale filter:  Bicubic
+23:00:46.880: 	fps:               30/1
+23:00:46.880: 	format:            NV12
+23:00:46.880: 	YUV mode:          Rec. 709/Partial
+23:00:46.880: NV12 texture support enabled
+23:00:46.880: P010 texture support not available
+23:00:46.884: Audio monitoring device:
+23:00:46.884: 	name: Default
+23:00:46.884: 	id: default
+23:00:46.885: ---------------------------------
+23:00:46.887: Failed to load 'en-US' text for module: 'decklink-captions.so'
+23:00:46.888: Failed to load 'en-US' text for module: 'decklink-output-ui.so'
+23:00:46.890: A DeckLink iterator could not be created.  The DeckLink drivers may not be installed
+23:00:46.890: Failed to initialize module 'decklink.so'
+23:00:46.894: [droidcam-obs] module loaded release 243 (arch)
+23:00:46.895: os_dlopen(/usr/lib/obs-plugins/frontend-tools.so->/usr/lib/obs-plugins/frontend-tools.so): libluajit-5.1.so.2: cannot open shared object file: No such file or directory
+23:00:46.895: 
+23:00:46.895: Module '/usr/lib/obs-plugins/frontend-tools.so' not loaded
+23:00:46.925: [pipewire] No capture sources available
+23:00:46.934: v4l2loopback not installed, virtual camera not registered
+23:00:46.965: VAAPI: Failed to initialize display in vaapi_device_h264_supported
+23:00:46.965: FFmpeg VAAPI H264 encoding not supported
+23:00:46.965: VAAPI: Failed to initialize display in vaapi_device_av1_supported
+23:00:46.965: FFmpeg VAAPI AV1 encoding not supported
+23:00:46.965: VAAPI: Failed to initialize display in vaapi_device_hevc_supported
+23:00:46.965: FFmpeg VAAPI HEVC encoding not supported
+23:00:46.970: os_dlopen(libnvidia-encode.so.1->libnvidia-encode.so.1): libnvidia-encode.so.1: cannot open shared object file: No such file or directory
+23:00:46.970: 
+23:00:46.970: NVENC not supported
+23:00:46.970: Failed to initialize module 'obs-nvenc.so'
+23:00:46.999: [obs-websocket] [obs_module_load] you can haz websockets (Version: 5.7.2 | RPC Version: 1)
+23:00:46.999: [obs-websocket] [obs_module_load] Qt version (compile-time): 6.10.2 | Qt version (run-time): 6.10.2
+23:00:46.999: [obs-websocket] [obs_module_load] Linked ASIO Version: 103600
+23:00:46.999: [obs-websocket] [Config::Load] Existing configuration not found, using defaults.
+23:00:46.999: [obs-websocket] [Config::Load] (FirstLoad) Generating new server password.
+23:00:47.007: [obs-websocket] [obs_module_load] Module loaded.
+23:00:47.011: ---------------------------------
+23:00:47.011:   Loaded Modules:
+23:00:47.011:     text-freetype2.so
+23:00:47.011:     rtmp-services.so
+23:00:47.011:     obs-x264.so
+23:00:47.011:     obs-websocket.so
+23:00:47.011:     obs-webrtc.so
+23:00:47.011:     obs-vst.so
+23:00:47.011:     obs-transitions.so
+23:00:47.011:     obs-qsv11.so
+23:00:47.011:     obs-outputs.so
+23:00:47.011:     obs-libfdk.so
+23:00:47.011:     obs-filters.so
+23:00:47.011:     obs-ffmpeg.so
+23:00:47.011:     linux-v4l2.so
+23:00:47.011:     linux-pulseaudio.so
+23:00:47.011:     linux-pipewire.so
+23:00:47.011:     linux-jack.so
+23:00:47.011:     linux-capture.so
+23:00:47.011:     linux-alsa.so
+23:00:47.011:     image-source.so
+23:00:47.011:     droidcam-obs.so
+23:00:47.011:     decklink-output-ui.so
+23:00:47.011:     decklink-captions.so
+23:00:47.011: ---------------------------------
+23:00:47.012: ---------------------------------
+23:00:47.012: Available Encoders:
+23:00:47.012:   Video Encoders:
+23:00:47.012: 	- ffmpeg_svt_av1 (SVT-AV1)
+23:00:47.012: 	- ffmpeg_aom_av1 (AOM AV1)
+23:00:47.012: 	- obs_x264 (x264)
+23:00:47.012:   Audio Encoders:
+23:00:47.012: 	- ffmpeg_aac (FFmpeg AAC)
+23:00:47.012: 	- ffmpeg_opus (FFmpeg Opus)
+23:00:47.012: 	- ffmpeg_pcm_s16le (FFmpeg PCM (16-bit))
+23:00:47.012: 	- ffmpeg_pcm_s24le (FFmpeg PCM (24-bit))
+23:00:47.012: 	- ffmpeg_pcm_f32le (FFmpeg PCM (32-bit float))
+23:00:47.012: 	- ffmpeg_alac (FFmpeg ALAC (24-bit))
+23:00:47.012: 	- ffmpeg_flac (FFmpeg FLAC (16-bit))
+23:00:47.012: 	- libfdk_aac (libfdk AAC)
+23:00:47.012: ==== Startup complete ===============================================
+23:00:47.018: No scene file found, creating default scene
+23:00:47.053: All scene data cleared
+23:00:47.053: ------------------------------------------------
+23:00:47.068: Device for 'Audio Output Capture' source Desktop Audio is also used for audio monitoring.
+23:00:47.068: Deduplication logic is being applied to all monitored sources.
+23:00:47.068: pulse-input: Server name: 'PulseAudio (on PipeWire 1.6.1) 15.0.0'
+23:00:47.069: pulse-input: Audio format: s32le, 48000 Hz, 2 channels
+23:00:47.069: pulse-input: Started recording from 'alsa_output.pci-0000_00_1b.0.analog-stereo.monitor' (default)
+23:00:47.070: pulse-input: Server name: 'PulseAudio (on PipeWire 1.6.1) 15.0.0'
+23:00:47.070: pulse-input: Audio format: s32le, 48000 Hz, 2 channels
+23:00:47.070: pulse-input: Started recording from 'alsa_input.platform-snd_aloop.0.analog-stereo' (default)
+23:00:47.073: Switched to scene 'Scene'
+23:00:47.073: Created scene collection 'Untitled' (clean, Untitled.json)
+23:00:47.073: ------------------------------------------------
+23:00:47.275: Device for 'Audio Output Capture' source Desktop Audio is also used for audio monitoring.
+23:00:47.275: Deduplication logic is being applied to all monitored sources.
+23:00:47.800: adding 21 milliseconds of audio buffering, total audio buffering is now 21 milliseconds (source: Desktop Audio)
+23:00:47.800: 
+23:01:01.448: 
+23:01:01.448: ==== Auto-config wizard testing commencing ======
+
+23:01:01.451: ---------------------------------
+23:01:01.451: video settings reset:
+23:01:01.451: 	base resolution:   1366x768
+23:01:01.451: 	output resolution: 852x480
+23:01:01.451: 	downscale filter:  Bicubic
+23:01:01.451: 	fps:               30/1
+23:01:01.451: 	format:            NV12
+23:01:01.451: 	YUV mode:          Rec. 709/Partial
+23:01:01.451: NV12 texture support enabled
+23:01:01.451: P010 texture support not available
+23:01:01.455: Output 'null': Tried to use obs_output_set_media on an encoded output
+23:01:01.455: ---------------------------------
+23:01:01.455: [x264 encoder: 'test_x264'] preset: veryfast
+23:01:01.455: [x264 encoder: 'test_x264'] profile: high
+23:01:01.456: [x264 encoder: 'test_x264'] settings:
+23:01:01.456: 	rate_control: CRF
+23:01:01.456: 	bitrate:      0
+23:01:01.456: 	buffer size:  0
+23:01:01.456: 	crf:          20
+23:01:01.456: 	fps_num:      30
+23:01:01.456: 	fps_den:      1
+23:01:01.456: 	width:        852
+23:01:01.456: 	height:       480
+23:01:01.456: 	keyint:       250
+23:01:01.456: 
+23:01:01.462: ---------------------------------
+23:01:01.463: [FFmpeg aac encoder: 'test_aac'] bitrate: 32, channels: 2, channel_layout: stereo, track: 1
+23:01:01.463: 
+23:01:06.467: Output 'null': stopping
+23:01:06.467: Output 'null': Total frames output: 132
+23:01:06.467: Output 'null': Total drawn frames: 150
+23:01:06.489: ---------------------------------
+23:01:06.489: video settings reset:
+23:01:06.489: 	base resolution:   1366x768
+23:01:06.489: 	output resolution: 640x360
+23:01:06.489: 	downscale filter:  Bicubic
+23:01:06.489: 	fps:               60/1
+23:01:06.489: 	format:            NV12
+23:01:06.489: 	YUV mode:          Rec. 709/Partial
+23:01:06.489: NV12 texture support enabled
+23:01:06.489: P010 texture support not available
+23:01:06.491: Output 'null': Tried to use obs_output_set_media on an encoded output
+23:01:06.491: ---------------------------------
+23:01:06.491: [x264 encoder: 'test_x264'] preset: veryfast
+23:01:06.491: [x264 encoder: 'test_x264'] profile: high
+23:01:06.491: [x264 encoder: 'test_x264'] settings:
+23:01:06.491: 	rate_control: CRF
+23:01:06.491: 	bitrate:      0
+23:01:06.491: 	buffer size:  0
+23:01:06.491: 	crf:          20
+23:01:06.491: 	fps_num:      60
+23:01:06.491: 	fps_den:      1
+23:01:06.491: 	width:        640
+23:01:06.491: 	height:       360
+23:01:06.491: 	keyint:       250
+23:01:06.491: 
+23:01:06.493: ---------------------------------
+23:01:06.494: [FFmpeg aac encoder: 'test_aac'] bitrate: 32, channels: 2, channel_layout: stereo, track: 1
+23:01:06.494: 
+23:01:11.496: Output 'null': stopping
+23:01:11.496: Output 'null': Total frames output: 282
+23:01:11.496: Output 'null': Total drawn frames: 300
+23:01:11.508: ---------------------------------
+23:01:11.508: video settings reset:
+23:01:11.508: 	base resolution:   1366x768
+23:01:11.508: 	output resolution: 640x360
+23:01:11.508: 	downscale filter:  Bicubic
+23:01:11.508: 	fps:               30/1
+23:01:11.508: 	format:            NV12
+23:01:11.508: 	YUV mode:          Rec. 709/Partial
+23:01:11.508: NV12 texture support enabled
+23:01:11.508: P010 texture support not available
+23:01:11.510: Output 'null': Tried to use obs_output_set_media on an encoded output
+23:01:11.510: ---------------------------------
+23:01:11.510: [x264 encoder: 'test_x264'] preset: veryfast
+23:01:11.510: [x264 encoder: 'test_x264'] profile: high
+23:01:11.510: [x264 encoder: 'test_x264'] settings:
+23:01:11.510: 	rate_control: CRF
+23:01:11.510: 	bitrate:      0
+23:01:11.510: 	buffer size:  0
+23:01:11.510: 	crf:          20
+23:01:11.510: 	fps_num:      30
+23:01:11.510: 	fps_den:      1
+23:01:11.510: 	width:        640
+23:01:11.510: 	height:       360
+23:01:11.510: 	keyint:       250
+23:01:11.510: 
+23:01:11.512: ---------------------------------
+23:01:11.512: [FFmpeg aac encoder: 'test_aac'] bitrate: 32, channels: 2, channel_layout: stereo, track: 1
+23:01:11.512: 
+23:01:16.513: Output 'null': stopping
+23:01:16.513: Output 'null': Total frames output: 132
+23:01:16.513: Output 'null': Total drawn frames: 150
+23:01:16.544: ---------------------------------
+23:01:16.544: video settings reset:
+23:01:16.544: 	base resolution:   1366x768
+23:01:16.544: 	output resolution: 1092x614
+23:01:16.544: 	downscale filter:  Bicubic
+23:01:16.544: 	fps:               30/1
+23:01:16.544: 	format:            NV12
+23:01:16.544: 	YUV mode:          Rec. 709/Partial
+23:01:16.544: NV12 texture support enabled
+23:01:16.544: P010 texture support not available
+23:01:16.552: Device for 'Audio Output Capture' source Desktop Audio is also used for audio monitoring.
+23:01:16.552: Deduplication logic is being applied to all monitored sources.
+23:01:23.681: ---------------------------------
+23:01:23.681: video settings reset:
+23:01:23.681: 	base resolution:   1366x768
+23:01:23.681: 	output resolution: 852x480
+23:01:23.681: 	downscale filter:  Bicubic
+23:01:23.681: 	fps:               30/1
+23:01:23.681: 	format:            NV12
+23:01:23.681: 	YUV mode:          Rec. 709/Partial
+23:01:23.681: NV12 texture support enabled
+23:01:23.681: P010 texture support not available
+23:01:23.689: 
+23:01:23.689: ==== Auto-config wizard testing stopping ========
+
+23:01:36.709: User added source 'Display Capture (XSHM)' (xshm_input_v2) to scene 'Scene'
+23:01:39.556: xshm-input: Geometry 1366x768 @ 0,0
+23:01:50.279: [DroidCamOBS] Source: "DroidCam OBS" - 243
+23:01:50.279: [DroidCamOBS] trying 'adb'
+23:01:50.321: [DroidCamOBS] adb found
+23:01:50.322: [DroidCamOBS] Source: activated=0, deactivateWNS=0, is_showing=0, enable_audio=0
+23:01:50.322: [DroidCamOBS] Source: video_format=avc video_resolution=640x480
+23:01:50.322: [DroidCamOBS] video_thread start
+23:01:50.322: [DroidCamOBS] audio_thread start
+23:01:50.323: [DroidCamOBS] video_decode_thread start
+23:01:50.326: User added source 'DroidCam OBS' (droidcam_obs) to scene 'Scene'
+23:01:50.345: [DroidCamOBS] source_properties: activated=0, uhd_unlock=0
+23:01:53.455: [DroidCamOBS] Refresh Device List clicked
+23:01:53.460: [DroidCamOBS] Could not get iOS device list. Is usbmuxd running?. error=-2
+23:01:53.531: [DroidCamOBS] added new device with serial 'DroidCam._droidcamobs._tcp.local.'
+23:01:53.531: [DroidCamOBS] device 'Android.local.' not found
+23:01:53.531: [DroidCamOBS] device 'Android.local.' not found
+23:01:53.532: [DroidCamOBS] warn: duplicate device
+23:01:53.532: [DroidCamOBS] error adding device
+23:01:53.532: [DroidCamOBS] device 'Android.local.' not found
+23:01:53.532: [DroidCamOBS] device 'Android.local.' not found
+23:02:01.735: [DroidCamOBS] activated: id=IB9SRWSK6T8T65AA type=2 ip=127.0.0.1 port=4747
+23:02:01.735: [DroidCamOBS] video_format=avc video_resolution=640x480
+23:02:01.748: [DroidCamOBS] ADB: mapping 4747 -> 4747 [IB9SRWSK6T8T65AA]
+23:02:02.697: [DroidCamOBS] read_frame: got config: 30
+23:02:02.701: [DroidCamOBS] use hw: 0
+23:02:02.702: [DroidCamOBS] ADB: mapping 4747 -> 4747 [IB9SRWSK6T8T65AA]
+23:02:02.788: [DroidCamOBS] ADB: mapping 4747 -> 4747 [IB9SRWSK6T8T65AA]
+23:02:02.860: [DroidCamOBS] read_frame: got config: 2
+23:02:02.993: [DroidCamOBS] audio: sample_rate=44100 channels=1
+23:02:38.416: ReadOne on org.freedesktop.portal.Settings returned an invalid reply
+23:02:38.606: ReadOne on org.freedesktop.portal.Settings returned an invalid reply
+23:02:46.850: ---------------------------------
+23:02:46.850: [x264 encoder: 'simple_video_recording'] preset: veryfast
+23:02:46.850: [x264 encoder: 'simple_video_recording'] profile: high
+23:02:46.850: [x264 encoder: 'simple_video_recording'] settings:
+23:02:46.850: 	rate_control: CRF
+23:02:46.850: 	bitrate:      0
+23:02:46.850: 	buffer size:  0
+23:02:46.850: 	crf:          18
+23:02:46.850: 	fps_num:      30
+23:02:46.850: 	fps_den:      1
+23:02:46.850: 	width:        852
+23:02:46.850: 	height:       480
+23:02:46.850: 	keyint:       250
+23:02:46.850: 
+23:02:46.852: libfdk_aac encoder created
+23:02:46.852: libfdk_aac bitrate: 192, channels: 2
+23:02:46.854: ==== Recording Start ===============================================
+23:02:46.854: [mp4 output: 'simple_file_output'] Writing Hybrid MP4/MOV file '/home/row/2026-03-16 23-02-46.mp4'...
+23:02:53.529: [mp4 muxer: 'simple_file_output'] Flushing final fragment...
+23:02:53.529: [mp4 muxer: 'simple_file_output'] Number of fragments: 1
+23:02:53.529: [mp4 muxer: 'simple_file_output'] Full moov size: 4 KiB
+23:02:53.529: [mp4 muxer: 'simple_file_output'] Final mdat size: 218 KiB
+23:02:53.529: Output 'simple_file_output': stopping
+23:02:53.529: Output 'simple_file_output': Total frames output: 183
+23:02:53.529: Output 'simple_file_output': Total drawn frames: 201
+23:02:53.530: [mp4 output: 'simple_file_output'] Waiting for file writer to finish...
+23:02:53.530: ==== Recording Stop ================================================
+23:02:53.532: [mp4 output: 'simple_file_output'] File output complete. Finalization took 3 ms.
+23:02:53.534: libfdk_aac encoder destroyed
+23:03:24.039: ReadOne on org.freedesktop.portal.Settings returned an invalid reply
+23:03:24.216: ReadOne on org.freedesktop.portal.Settings returned an invalid reply
+23:03:40.822: ---------------------------------
+23:03:40.822: video settings reset:
+23:03:40.822: 	base resolution:   1366x768
+23:03:40.822: 	output resolution: 1364x768
+23:03:40.822: 	downscale filter:  Bilinear
+23:03:40.822: 	fps:               60/1
+23:03:40.822: 	format:            NV12
+23:03:40.822: 	YUV mode:          Rec. 709/Partial
+23:03:40.822: NV12 texture support enabled
+23:03:40.822: P010 texture support not available
+23:03:40.826: Settings changed (video)
+23:03:40.826: ------------------------------------------------
+23:03:46.136: ReadOne on org.freedesktop.portal.Settings returned an invalid reply
+23:03:46.337: ReadOne on org.freedesktop.portal.Settings returned an invalid reply
+23:04:06.854: Settings changed (outputs)
+23:04:06.854: ------------------------------------------------
+23:04:21.038: Settings changed (outputs)
+23:04:21.038: ------------------------------------------------
+23:04:24.737: ---------------------------------
+23:04:24.737: [x264 encoder: 'simple_video_stream'] preset: veryfast
+23:04:24.737: [x264 encoder: 'simple_video_stream'] settings:
+23:04:24.737: 	rate_control: CBR
+23:04:24.737: 	bitrate:      6000
+23:04:24.737: 	buffer size:  6000
+23:04:24.737: 	crf:          23
+23:04:24.737: 	fps_num:      60
+23:04:24.737: 	fps_den:      1
+23:04:24.737: 	width:        1364
+23:04:24.737: 	height:       768
+23:04:24.737: 	keyint:       250
+23:04:24.737: 
+23:04:24.741: libfdk_aac encoder created
+23:04:24.741: libfdk_aac bitrate: 160, channels: 2
+23:04:24.743: ==== Recording Start ===============================================
+23:04:24.743: [ffmpeg muxer: 'simple_file_output'] Writing file '/home/row/2026-03-16 23-04-24.mp4'...
+23:04:42.244: [ffmpeg muxer: 'simple_file_output'] Output of file '/home/row/2026-03-16 23-04-24.mp4' stopped
+23:04:42.244: Output 'simple_file_output': stopping
+23:04:42.244: Output 'simple_file_output': Total frames output: 1031
+23:04:42.244: Output 'simple_file_output': Total drawn frames: 1045 (1050 attempted)
+23:04:42.244: Output 'simple_file_output': Number of lagged frames due to rendering lag/stalls: 5 (0.5%)
+23:04:42.246: ==== Recording Stop ================================================
+23:04:42.255: libfdk_aac encoder destroyed
+23:06:36.271: [DroidCamOBS] read header recv returned 0
+23:06:36.297: [DroidCamOBS] read header recv returned 0
+23:06:38.337: [DroidCamOBS] ADB: mapping 4747 -> 4747 [IB9SRWSK6T8T65AA]
+23:06:39.268: [DroidCamOBS] read_frame: got config: 30
+23:06:39.273: [DroidCamOBS] use hw: 0
+23:06:39.391: [DroidCamOBS] ADB: mapping 4747 -> 4747 [IB9SRWSK6T8T65AA]
+23:06:39.481: [DroidCamOBS] read_frame: got config: 2
+23:06:39.614: [DroidCamOBS] audio: sample_rate=44100 channels=1
+23:08:23.506: ReadOne on org.freedesktop.portal.Settings returned an invalid reply
+23:08:23.693: ReadOne on org.freedesktop.portal.Settings returned an invalid reply
+23:09:04.242: User added filter 'Noise Suppression' (noise_suppress_filter_v2) to source 'DroidCam OBS'
+23:09:51.521: ---------------------------------
+23:09:51.521: [x264 encoder: 'simple_video_stream'] preset: veryfast
+23:09:51.521: [x264 encoder: 'simple_video_stream'] settings:
+23:09:51.521: 	rate_control: CBR
+23:09:51.521: 	bitrate:      6000
+23:09:51.521: 	buffer size:  6000
+23:09:51.521: 	crf:          23
+23:09:51.521: 	fps_num:      60
+23:09:51.521: 	fps_den:      1
+23:09:51.521: 	width:        1364
+23:09:51.521: 	height:       768
+23:09:51.521: 	keyint:       250
+23:09:51.521: 
+23:09:51.524: libfdk_aac encoder created
+23:09:51.524: libfdk_aac bitrate: 160, channels: 2
+23:09:51.526: ==== Recording Start ===============================================
+23:09:51.526: [ffmpeg muxer: 'simple_file_output'] Writing file '/home/row/2026-03-16 23-09-51.mp4'...
+23:10:15.466: [ffmpeg muxer: 'simple_file_output'] Output of file '/home/row/2026-03-16 23-09-51.mp4' stopped
+23:10:15.466: Output 'simple_file_output': stopping
+23:10:15.466: Output 'simple_file_output': Total frames output: 1418
+23:10:15.466: Output 'simple_file_output': Total drawn frames: 1434 (1436 attempted)
+23:10:15.466: Output 'simple_file_output': Number of lagged frames due to rendering lag/stalls: 2 (0.1%)
+23:10:15.469: ==== Recording Stop ================================================
+23:10:15.484: libfdk_aac encoder destroyed
+23:10:56.548: ---------------------------------
+23:10:56.548: [x264 encoder: 'simple_video_stream'] preset: veryfast
+23:10:56.548: [x264 encoder: 'simple_video_stream'] settings:
+23:10:56.548: 	rate_control: CBR
+23:10:56.548: 	bitrate:      6000
+23:10:56.548: 	buffer size:  6000
+23:10:56.548: 	crf:          23
+23:10:56.548: 	fps_num:      60
+23:10:56.548: 	fps_den:      1
+23:10:56.548: 	width:        1364
+23:10:56.548: 	height:       768
+23:10:56.548: 	keyint:       250
+23:10:56.548: 
+23:10:56.554: libfdk_aac encoder created
+23:10:56.554: libfdk_aac bitrate: 160, channels: 2
+23:10:56.558: ==== Recording Start ===============================================
+23:10:56.558: [ffmpeg muxer: 'simple_file_output'] Writing file '/home/row/2026-03-16 23-10-56.mp4'...
+23:11:06.456: [ffmpeg muxer: 'simple_file_output'] Output of file '/home/row/2026-03-16 23-10-56.mp4' stopped
+23:11:06.457: Output 'simple_file_output': stopping
+23:11:06.457: Output 'simple_file_output': Total frames output: 576
+23:11:06.457: Output 'simple_file_output': Total drawn frames: 594
+23:11:06.459: ==== Recording Stop ================================================
+23:11:06.467: libfdk_aac encoder destroyed
