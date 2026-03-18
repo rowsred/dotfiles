@@ -221,6 +221,7 @@ require("mason").setup()
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
+		c = { "clang-format" },
 		-- Conform will run multiple formatters sequentially
 		python = { "isort", "black" },
 		-- You can customize some of the format options for the filetype (:help conform.format)
@@ -266,6 +267,7 @@ vim.lsp.enable("css_varibles")
 vim.lsp.enable("cssmodules_ls")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("vtsls")
+vim.lsp.enable("clangd")
 --: diagnostic custom
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
 
@@ -358,4 +360,3 @@ require("ibl").setup()
 vim.pack.add({
 	{ src = "https://github.com/mrcjkb/rustaceanvim" },
 })
-vim.api.nvim_create_autocmd("FileType", { pattern = "rust", command = "lsp enable" })
