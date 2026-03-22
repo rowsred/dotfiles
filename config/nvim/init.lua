@@ -259,6 +259,26 @@ vim.lsp.config("lua_ls", {
 		},
 	},
 })
+vim.lsp.config("nixd", {
+settings = {
+    nixd = {
+      nixpkgs = {
+        expr = "import <nixpkgs> { }",
+      },
+      formatting = {
+        command = { "nixfmt" },
+      },
+      options = {
+        nixos = {
+          expr = '(builtins.getFlake (toString ./.)).nixosConfigurations.nixos.options',
+        },
+        home_manager = {
+          expr = '(builtins.getFlake (toString ./.)).homeConfigurations."row@nixos".options',
+        },
+      },
+    },
+  },
+})
 vim.lsp.enable("lua_ls")
 --vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("bashls")

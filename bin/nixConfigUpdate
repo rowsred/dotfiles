@@ -25,6 +25,7 @@ CONFIG_LIST=(
     "niri:niri:merge"
     "VSCodium:VSCodium:merge"
     "gtk-3.0:gtk-3.0:merge"
+    "gtk-4.0:gtk-4.0:merge"
 #    "i3:i3:merge"
 #    "kitty:kitty:merge"
 #    "polybar:polybar:replace"
