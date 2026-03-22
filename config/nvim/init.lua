@@ -221,6 +221,7 @@ require("mason").setup()
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
+		nix = { "nixfmt" },
 		c = { "clang-format" },
 		-- Conform will run multiple formatters sequentially
 		python = { "isort", "black" },
@@ -261,6 +262,7 @@ vim.lsp.config("lua_ls", {
 vim.lsp.enable("lua_ls")
 --vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("bashls")
+vim.lsp.enable("nixd")
 vim.lsp.enable("cssls")
 vim.lsp.enable("html")
 vim.lsp.enable("css_varibles")
