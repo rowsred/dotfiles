@@ -1,0 +1,21 @@
+{
+    "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 80,
+  "editor.rulers": [80],
+  "editor.lineNumbers": "relative",
+  "window.titleBarStyle": "native",
+  "window.menuBarVisibility": "hidden",
+  "window.commandCenter": false,
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.tabCloseButton": "off",
+  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.layoutControl.enabled": false,
+  "chat.disableAIFeatures": true,
+  "chat.commandCenter.enabled": false,
+  "workbench.editor.tabActionCloseVisibility": false,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "git.openRepositoryInParentFolders": "always",
+
+}
