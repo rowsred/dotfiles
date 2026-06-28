@@ -30,11 +30,9 @@ map("i", "jk", "<esc>", {})
 map("n", "<leader>w", ":w<cr>", {})
 map("n", "<leader>x", ":bdelete<cr>", {})
 map("n", "<leader>c", ":!", {})
-map("n", "<leader>e", ":Ex<cr>", {})
 map("n", "<leader>nh", ":nohl<cr>", {})
 map("n", "<leader>ff", ":FZF<cr>", {})
-
-vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory in float" })
+map("n", "<leader>1", "<C-w>w", {})
 
 vim.keymap.set("n", "<leader>hh", function()
 	local current_diag = vim.diagnostic.config()
@@ -102,17 +100,55 @@ vim.pack.add({
 -- =============================================================================
 -- PLUGINS CONFIGURATION
 -- =============================================================================
+vim.keymap.set("n", "<leader>e", function()
+	local oil = require("oil")
+	local oil_win = nil
+
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "oil" then
+			oil_win = win
+			break
+		end
+	end
+
+	if oil_win then
+		vim.api.nvim_win_close(oil_win, true)
+	else
+		vim.cmd("topleft vsplit | vertical resize 30")
+		oil.open()
+	end
+end, { desc = "Toggle Oil Sidebar" })
+
 require("oil").setup({
-	float = {
-		max_width = 80,
-		max_height = 20,
-		border = "rounded",
-		win_options = {
-			winblend = 0,
+	keymaps = {
+		["<CR>"] = {
+			callback = function()
+				local oil = require("oil")
+				local entry = oil.get_cursor_entry()
+
+				if entry and entry.type == "file" then
+					local filepath = oil.get_current_dir() .. entry.name
+					local target_win = nil
+
+					for _, win in ipairs(vim.api.nvim_list_wins()) do
+						if vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "oil" then
+							target_win = win
+							break
+						end
+					end
+
+					if target_win then
+						vim.api.nvim_set_current_win(target_win)
+						vim.cmd("edit " .. vim.fn.fnameescape(filepath))
+					else
+						vim.cmd("vsplit " .. vim.fn.fnameescape(filepath))
+					end
+				else
+					oil.select()
+				end
+			end,
+			desc = "Open file in main code window",
 		},
-	},
-	view_options = {
-		show_hidden = false,
 	},
 })
 
