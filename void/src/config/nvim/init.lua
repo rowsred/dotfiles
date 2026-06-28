@@ -223,6 +223,17 @@ function WEBDEV()
 		"tailwindcss",
 	}
 	vim.lsp.enable(servers)
+	--[[
+    --setup  all lsp for wbdev
+    --creae dir
+    --"mkdir -p ~/.local/npm-glob"
+    --setup npm prefix global
+    --"npm config set ~/.local/npm-glob"
+    --add to path
+    --export PATH="$HOME/.local/npm-glob/bin:$PATH"
+    --install all
+    --npm install -g emmet-ls@latest @vtsls/language-server@latest vscode-langservers-extracted@latest eslint@latest @vue/language-server@latest svelte-language-server@latest tailwindcss-language-server@latest prettier@latest
+    --]]
 end
 
 -- WEBDEV()
