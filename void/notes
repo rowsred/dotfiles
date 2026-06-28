@@ -1,0 +1,22 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hyprland repo void
+echo repository=https://raw.githubusercontent.com/sofijacom/hyprland-void/repository-x86_64-glibc | sudo tee /etc/xbps.d/hyprland-void.conf
+xbps-query -Rs hypr
+sudo xbps-install -S hyprland xdg-desktop-portal-hyprland hyprlauncher
+hyprland-guiutils
