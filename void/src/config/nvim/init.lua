@@ -18,7 +18,6 @@ o.updatetime = 250
 o.textwidth = 80
 o.colorcolumn = "80"
 o.completeopt = { "menuone", "noselect", "popup" }
-
 -- =============================================================================
 -- KEYMAPS
 -- =============================================================================
@@ -93,9 +92,11 @@ vim.pack.add({
 	{ src = "https://github.com/mrcjkb/rustaceanvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/marko-cerovac/material.nvim" },
 	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 	{ src = "https://github.com/saghen/blink.cmp", version = "v1.10.2" },
 })
+vim.cmd([[colorscheme material-deep-ocean]])
 
 -- =============================================================================
 -- PLUGINS CONFIGURATION
@@ -272,4 +273,4 @@ function WEBDEV()
     --]]
 end
 
--- WEBDEV()
+--WEBDEV()
