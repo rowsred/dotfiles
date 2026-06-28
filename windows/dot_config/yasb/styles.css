@@ -1,0 +1,111 @@
+/* ////////////////////////////////////////////////////////////////////
+   // FILE       :: styles.css
+   // AUTHOR     :: rowsred
+   // DATE       :: 2026-06-11
+   // HOST_OS    :: Windows
+   // DESC       :: just keep , code
+ //////////////////////////////////////////////////////////////////// */
+/* 
+   macOS Space Gray Theme - Optimized for YASB
+   Clean container blocks, solid white active states, premium minimal tech looks.
+*/
+
+:root {
+    --mac-bg: #161616;               /* Pitch Black / Space Gray Base */
+    --mac-surface: #262626;          /* Container abu-abu khas macOS */
+    --mac-surface-hover: #323232;    /* Hover state container */
+    
+    --mac-active-bg: #ffffff;        /* Kapsul Putih Bersih untuk yang aktif */
+    --mac-active-fg: #161616;        /* Teks hitam pekat di dalam kapsul aktif */
+    
+    --mac-fg: #f5f5f7;               /* Apple White (Teks utama terang) */
+    --mac-fg-muted: #86868b;         /* Apple Muted Gray (Teks kosong/sekunder) */
+
+    --font-m3: "", "JetBrains Mono", "Segoe UI Variable", sans-serif;
+}
+
+.yasb-bar {
+    background-color: var(--mac-bg);
+    padding: 2px 12px;
+    border: 1px solid var(--mac-surface); /* Border tipis agar lebih berdimensi */
+    
+    border-radius: 24px;       /* Membuat ujung kanan-kiri melengkung sempurna */
+    margin: 6px 12px 0px 12px; /* Memberikan jarak dari tepi layar */
+}
+
+.widget {
+    background-color: var(--mac-surface);
+    margin: 4px 5px;
+    padding: 0px 14px;
+    border-radius: 20px; /* Bentuk kapsul rounded khas macOS */
+}
+
+.widget .label {
+    font-family: var(--font-m3);
+    font-size: 12px;
+    color: var(--mac-fg);
+    font-weight: 600;
+}
+
+.widget .icon {
+    color: var(--mac-fg);
+    font-size: 14px;
+    padding-right: 5px;
+}
+
+
+/* =============================================================================
+   GLAZEWM WORKSPACES - SPECIFIC TARGETED FONT
+   ============================================================================= */
+
+.glazewm-workspaces {
+    background-color: var(--mac-surface);
+    margin: 4px 5px;
+    padding: 2px 4px;
+    border-radius: 20px;
+}
+
+.glazewm-workspaces .ws-btn {
+    font-family: var(--font-m3);
+    font-size: 10px;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+    padding: 2px 10px;
+    margin: 0 2px;
+    border-radius: 14px;
+    color: var(--mac-fg-muted);
+}
+
+.glazewm-workspaces .ws-btn.active_populated,
+.glazewm-workspaces .ws-btn.active_empty {
+    color: var(--mac-active-fg) !important;
+    background-color: var(--mac-active-bg) !important;
+    font-weight: 700;
+}
+.glazewm-workspaces .ws-btn.populated {
+    color: var(--mac-fg) !important;
+    background-color: transparent;
+}
+
+.glazewm-workspaces .ws-btn.empty {
+    color: var(--mac-fg-muted) !important;
+    background-color: transparent;
+}
+
+.glazewm-workspaces .ws-btn:hover,
+.glazewm-workspaces .ws-btn.populated:hover,
+.glazewm-workspaces .ws-btn.empty:hover {
+    background-color: var(--mac-surface-hover) !important;
+    color: var(--mac-fg) !important;
+}
+
+
+.active-window-widget {
+    background-color: transparent;
+}
+.active-window-widget .label {
+    font-family: var(--font-m3);
+    color: var(--mac-fg-muted);
+    font-weight: 500;
+}
