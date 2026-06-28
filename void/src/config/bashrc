@@ -16,5 +16,5 @@
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/npm-glob/bin:$HOME/.cargo/bin:$PATH"
 eval "$(starship init bash)"
