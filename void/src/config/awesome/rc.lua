@@ -592,3 +592,4 @@ end)
 awful.spawn.with_shell("xrandr --output HDMI-1 --mode 1920x1080")
 awful.spawn.with_shell("xset r rate 200 35")
 awful.spawn.with_shell("pkill picom;picom &")
+beautiful.useless_gap = 0
