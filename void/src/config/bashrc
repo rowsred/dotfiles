@@ -15,6 +15,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
+alias code='code-oss --ozone-platform=wayland'
 PS1='[\u@\h \W]\$ '
 export PATH="$HOME/.local/npm-glob/bin:$HOME/.cargo/bin:$PATH"
 eval "$(starship init bash)"

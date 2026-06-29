@@ -81,32 +81,6 @@
     {
       "before": ["<C-p>"],
       "commands": ["selectPrevSuggestion"]
-    },
-    // Global Trigger to invoke the Oil explorer
-    {
-      "before": ["-"],
-      "commands": ["oil-code.open"]
-    },
-    // Sandbox Isolated Oil Commands (Only active inside an Oil buffer)
-    {
-      "before": ["<cr>"],
-      "commands": ["oil-code.select"],
-      "when": "editorLangId == 'oil'"
-    },
-    {
-      "before": ["<c-l>"],
-      "commands": ["oil-code.refresh"],
-      "when": "editorLangId == 'oil'"
-    },
-    {
-      "before": ["`"],
-      "commands": ["oil-code.cd"],
-      "when": "editorLangId == 'oil'"
-    },
-    {
-      "before": ["g", "d"],
-      "commands": ["oil-code.toggleDetails"],
-      "when": "editorLangId == 'oil'"
     }
   ]
 }
