@@ -96,7 +96,7 @@ vim.pack.add({
 	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 	{ src = "https://github.com/saghen/blink.cmp", version = "v1.10.2" },
 })
-vim.cmd([[colorscheme material-deep-ocean]])
+vim.cmd([[colorscheme material-palenight]])
 
 -- =============================================================================
 -- PLUGINS CONFIGURATION
