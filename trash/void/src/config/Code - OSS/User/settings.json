@@ -1,0 +1,86 @@
+{
+  // ==================== CORE CONFIG ====================
+  "window.restoreWindows": "none",
+  "workbench.startupEditor": "none",
+  "explorer.autoReveal": false,
+  //  "workbench.activityBar.location": "hidden",
+  "window.titleBarStyle": "native",
+  "window.menuBarVisibility": "hidden",
+  "window.commandCenter": false,
+
+  // ==================== EDITOR & WRAP ====================
+  "editor.lineNumbers": "relative",
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 80,
+  "editor.rulers": [80],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // ==================== TABS & ACTIONS ====================
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.tabCloseButton": "off",
+  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.layoutControl.enabled": false,
+  "workbench.editor.tabActionCloseVisibility": false,
+  "chat.disableAIFeatures": true,
+  "chat.commandCenter.enabled": false,
+
+  // ==================== OIL TUNING ====================
+  "oil-code.disableDefaultKeymaps": true,
+
+  // ==================== VIM SETTINGS ====================
+  "vim.enableNeovim": true,
+  "vim.useSystemClipboard": true,
+  "vim.leader": "<space>",
+
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["<C-y>"],
+      "commands": ["acceptSelectedSuggestion"]
+    }
+  ],
+
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // Core Workflow Binds
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["oil-code.open"]
+    },
+    {
+      "before": ["<leader>", "c"],
+      "commands": ["workbench.action.terminal.toggleTerminal"]
+    },
+    {
+      "before": ["<leader>", "x"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "n"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<leader>", "p"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<C-n>"],
+      "commands": ["selectNextSuggestion"]
+    },
+    {
+      "before": ["<C-p>"],
+      "commands": ["selectPrevSuggestion"]
+    }
+  ]
+}
