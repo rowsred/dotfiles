@@ -226,7 +226,7 @@ awful.screen.connect_for_each_screen(function(s)
 	})
 
 	-- Create the wibox
-	s.mywibox = awful.wibar({ position = "bottom", screen = s })
+	s.mywibox = awful.wibar({ position = "top", screen = s })
 
 	-- Add widgets to the wibox
 	s.mywibox:setup({
@@ -588,6 +588,7 @@ client.connect_signal("unfocus", function(c)
 end)
 -- }}}
 -- spawn config
-awful.spawn.with_shell("xrandr -s 1366x768")
+--
+awful.spawn.with_shell("xrandr --output HDMI-1 --mode 1920x1080")
 awful.spawn.with_shell("xset r rate 200 35")
 awful.spawn.with_shell("pkill picom;picom &")
