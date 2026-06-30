@@ -17,8 +17,15 @@
     #formater
     nixfmt
     stylua
+    prettier
     #lsp
     lua-language-server
-    prettier
+    nodejs
+    emmet-ls
+    vtsls
+    vscode-langservers-extracted
+    vue-language-server
+    svelte-language-server
+    tailwindcss-language-server
   ];
 }
