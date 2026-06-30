@@ -8,10 +8,12 @@
     fd
     tree-sitter
     just
+    #base-devel
     gcc
     gnumake
     cmake
     pkg-config
+    clang-tools
     #formater
     nixfmt
     stylua
