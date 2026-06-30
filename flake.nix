@@ -11,9 +11,9 @@
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
-          ./hyprland.nix
-          ./editor.nix
+          ./src/configuration.nix
+          ./src/hyprland.nix
+          ./src/editor.nix
         ];
 
       };
