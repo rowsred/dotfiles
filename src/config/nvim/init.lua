@@ -129,7 +129,8 @@ vim.keymap.set("n", "<leader>e", function()
 	if oil_win then
 		vim.api.nvim_win_close(oil_win, true)
 	else
-		vim.cmd("topleft vsplit | vertical resize 30")
+		-- PERBAIKAN: Mengubah 'topleft' (kiri) menjadi 'botright' (kanan)
+		vim.cmd("botright vsplit | vertical resize 30")
 		oil.open()
 	end
 end, { desc = "Toggle Oil Sidebar" })
@@ -156,6 +157,8 @@ require("oil").setup({
 						vim.api.nvim_set_current_win(target_win)
 						vim.cmd("edit " .. vim.fn.fnameescape(filepath))
 					else
+						-- Opsional: jika membuka file baru saat jendela utama tidak ada,
+						-- 'vsplit' bawaan akan membelah ke kanan secara alami.
 						vim.cmd("vsplit " .. vim.fn.fnameescape(filepath))
 					end
 				else

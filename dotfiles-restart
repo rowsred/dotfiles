@@ -188,4 +188,3 @@ else
     echo -e "${D}${footer_text}${NC}"
     echo ""
 fi
-hyprctl reload
