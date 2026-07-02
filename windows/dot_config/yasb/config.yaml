@@ -10,7 +10,7 @@ bars:
   primary-bar:
     enabled: true
     screens:
-    - '*'
+      - "*"
     class_name: yasb-bar
     alignment:
       position: top
@@ -34,44 +34,44 @@ bars:
       right: 0
     widgets:
       left:
-      - home
-      - clock
+        - home
+        - clock
       center:
-      - glazewm_workspaces
+        - glazewm_workspaces
       right:
-      #- active_window
-      - volume
-      - notifications
-      - power_menu
+        #- active_window
+        - volume
+        - notifications
+        - power_menu
 widgets:
   glazewm_workspaces:
     type: "glazewm.workspaces.GlazewmWorkspacesWidget"
     options:
-        offline_label: "GlazeWM Offline"
-        hide_if_offline: false
-        monitor_exclusive: true
-        enable_scroll_switching: true
-        app_icons: 
-          enabled_populated: false
-          enabled_active: false
-          size: 12
-          max_icons: 0
-          hide_label: false
-          hide_duplicates: false
-          hide_floating: false
+      offline_label: "GlazeWM Offline"
+      hide_if_offline: false
+      monitor_exclusive: true
+      enable_scroll_switching: true
+      app_icons:
+        enabled_populated: false
+        enabled_active: false
+        size: 12
+        max_icons: 0
+        hide_label: false
+        hide_duplicates: false
+        hide_floating: false
   home:
     type: yasb.home.HomeWidget
     options:
       label: "<span>\uE8A9</span>"
       menu_list:
-      - title: User Home
-        path: '~'
-      - title: Download
-        path: ~\Downloads
-      - title: Documents
-        path: ~\Documents
-      - title: Pictures
-        path: ~\Pictures
+        - title: User Home
+          path: "~"
+        - title: Download
+          path: ~\Downloads
+        - title: Documents
+          path: ~\Documents
+        - title: Pictures
+          path: ~\Pictures
       system_menu: true
       power_menu: true
       blur: true
@@ -83,8 +83,8 @@ widgets:
   clock:
     type: yasb.clock.ClockWidget
     options:
-      label: '{%H:%M}<span>{alarm}</span>'
-      label_alt: '{%a, %d %b %H:%M}'
+      label: "{%H:%M}<span>{alarm}</span>"
+      label_alt: "{%a, %d %b %H:%M}"
       timezones: []
       calendar:
         blur: true
@@ -106,11 +106,11 @@ widgets:
       label_alt: <span>{icon}</span>{level}
       tooltip: true
       volume_icons:
-      - "\uE74F"
-      - "\uE992"
-      - "\uE993"
-      - "\uE994"
-      - "\uE995"
+        - "\uE74F"
+        - "\uE992"
+        - "\uE993"
+        - "\uE994"
+        - "\uE995"
       callbacks:
         on_left: toggle_volume_menu
         on_right: toggle_mute
@@ -132,7 +132,7 @@ widgets:
     type: yasb.notifications.NotificationsWidget
     options:
       label: "<span>\uF2A5</span>"
-      label_alt: '{count} notifications'
+      label_alt: "{count} notifications"
       hide_empty: true
       tooltip: false
       callbacks:
@@ -156,34 +156,34 @@ widgets:
       profile_image_size: 64
       buttons:
         lock:
-        - "\uDB80\uDF41"
-        - Lock
+          - "\uDB80\uDF41"
+          - Lock
         signout:
-        - "\uDB80\uDF43"
-        - Sign out
+          - "\uDB80\uDF43"
+          - Sign out
         sleep:
-        - "\uDB82\uDD04"
-        - Sleep
+          - "\uDB82\uDD04"
+          - Sleep
         hibernate:
-        - "\uDB82\uDD01"
-        - Hibernate
+          - "\uDB82\uDD01"
+          - Hibernate
         restart:
-        - "\uDB81\uDC53"
-        - Restart
+          - "\uDB81\uDC53"
+          - Restart
         shutdown:
-        - "\uDB82\uDD06"
-        - Shut Down
+          - "\uDB82\uDD06"
+          - Shut Down
         cancel:
-        - ''
-        - Cancel
+          - ""
+          - Cancel
   active_window:
     type: yasb.active_window.ActiveWindowWidget
     options:
-      label: '{win[title]}'
-      label_alt: '[class_name=''{win[class_name]}'' exe=''{win[process][name]}'' hwnd={win[hwnd]}]'
-      label_no_window: ''
+      label: "{win[title]}"
+      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
+      label_no_window: ""
       label_icon: true
       label_icon_size: 16
       max_length: 32
-      max_length_ellipsis: '...'
+      max_length_ellipsis: "..."
       monitor_exclusive: false
